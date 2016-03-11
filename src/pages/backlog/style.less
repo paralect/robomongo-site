@@ -1,0 +1,92 @@
+@import "../react-layout/components/less-vars/defaults.less";
+
+.backlog-block {
+  position: relative;
+  top: -5px;
+  background-color: #fafafa;
+  border-top: 1px solid #f8f8f8;
+  border-bottom: 1px solid #f8f8f8;
+  padding-top: 30px;
+  padding-bottom: 60px;
+
+  &__title {
+    font-size: 44px;
+    font-weight: @font-weight-80;
+    color: @font-color-dark-90;
+    position: relative;
+    left: -3px;
+  }
+
+  &__link {
+    color: @font-color-dark-70;
+    border-bottom: 1px dotted @font-color-dark-60;
+
+    &:hover,
+    &:focus {
+      color: @font-color-dark-60;
+      text-decoration: none;
+      border-bottom: 1px solid white;
+    }
+  }
+
+  &__issues_container {
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    min-width: 388px;
+  }
+
+  &__issues {
+    border-color: #dddddd;
+    margin-bottom: 10px;
+    vertical-align: top;
+  }
+
+  &__issues th {
+    border : 1px solid #dddddd;
+    text-align: left;
+    padding: 3px;
+    vertical-align: top;
+  }
+
+  &__issues td {
+      text-align: left;
+      border-color: #dddddd;
+      padding: 3px 7px 3px 7px;
+      vertical-align: top;
+  }
+
+  &__issues th {
+      font-weight: bold;
+      vertical-align: top;
+      padding: 5px 5px 2px 5px;
+  }
+
+  &__issues th:first-child {
+      min-width: 200px;
+      width: 210px;
+  }
+  &__issues th:last-child {
+      width: 100px;
+      text-align: left;
+  }
+
+  &__issues td:last-child {
+      text-align: left;
+      vertical-align: middle;
+  }
+}
+
+
+.vertically-centered {
+  display: table;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+
+  &__box {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}

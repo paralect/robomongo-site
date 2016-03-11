@@ -1,0 +1,17 @@
+/**
+ * In order to support global "less-import", we are separating mixins and ordinary less styles.
+ * There are some text mixins, that are not mixins in Bootstrap, but used by this site as mixins.
+ * Maybe it is even better to write explicit CSS code, instead of this one-line mixins...
+ */
+
+// Alignment
+.text-left()           { text-align: left; }
+.text-right()          { text-align: right; }
+.text-center()         { text-align: center; }
+.text-justify()        { text-align: justify; }
+.text-nowrap()         { white-space: nowrap; }
+
+// Transformation
+.text-lowercase()      { text-transform: lowercase; }
+.text-uppercase()      { text-transform: uppercase; }
+.text-capitalize()     { text-transform: capitalize; }

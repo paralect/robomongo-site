@@ -1,0 +1,87 @@
+@import "./../less-vars/defaults.less";
+
+.robo-header {
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  &__logo {
+    width: 44px;
+    height: 44px;
+    margin-right: 7px;
+  }
+
+  &__account {
+    padding-left: 25px;
+    position: relative;
+  }
+
+  &__account-image {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+
+    top: 10px;
+    left: 10px;
+  }
+
+  &__account-link {
+
+  }
+}
+
+#robo-header__account-link {
+  padding-left: 45px;
+}
+
+/**
+* Bootstrap tweaks
+*/
+.navbar.navbar-default {
+  margin-top : 50px;
+  background-color: transparent;
+  border-color: transparent;
+
+  .navbar-nav {
+    font-size: 20px;
+
+    li {
+      margin-left: 10px;
+      a {
+        border-radius: 4px;
+        color: @font-color-dark-80;
+
+        &:hover {
+          color: @font-color-dark-60;
+        }
+      }
+
+      &.active {
+        a {
+          //background-color: fade(#40a240, 60%);
+          //color: white;
+        }
+      }
+    }
+  }
+
+  .navbar-brand {
+    border-radius: 3px;
+    color: @font-color-dark-80;
+    font-size: 20px;
+    &:hover {
+      color: @font-color-dark-60;
+    }
+    > img {
+      display: inline;
+    }
+
+  }
+
+}
+
+//.navbar-default {
+//
+//  .navbar-default .navbar-nav > li > a
+//
+//}

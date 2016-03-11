@@ -1,0 +1,15 @@
+{
+  "dependencies": [
+    "less-import: ./less/variables.less",
+    "less-import: ./less/mixins.less",
+    "less-import: ./text-mixin.less",
+    "./less/bootstrap.less",
+
+    "./js/button.js",
+    "./js/tooltip.js",
+    "./js/popover.js",
+    "./js/collapse.js",
+    "./js/transition.js",
+    "./js/modal.js"
+  ]
+}

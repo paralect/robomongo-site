@@ -1,0 +1,15 @@
+node_modules
+*.log
+*.iml
+*.pyc
+*.kate-swp
+.idea/*
+.DS_Store
+/build
+/target
+/.cache
+/src/static
+*.log
+
+# ignore ssl certificates
+/deploy/ssl_certs

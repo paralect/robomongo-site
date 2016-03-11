@@ -1,0 +1,7 @@
+require("./js/button.js")
+require("./js/tooltip.js")
+require("./js/popover.js")
+require("./js/collapse.js")
+require("./js/transition.js")
+require("./js/modal.js")
+require('./index.less')
