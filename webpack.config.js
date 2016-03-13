@@ -22,7 +22,7 @@ module.exports = {
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader?strictMath&noIeCompat')
       },
       {
-        test: /\.(png|jpg|gif|woff|woff2|eot|ttf|svg|)$/,
+        test: /\.(png|jpg|gif|woff|woff2|eot|ttf|svg|ico|)$/,
         loader: 'url-loader?limit=8192'
       },
       {
@@ -39,12 +39,14 @@ module.exports = {
   // We have to manually add the Hot Replacement plugin when running
   // from Node
   plugins: [
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new ExtractTextPlugin('[name].css'),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jQuery'
-    })
+    }),
+    new webpack.NoErrorsPlugin()
   ],
 
   resolve: {
