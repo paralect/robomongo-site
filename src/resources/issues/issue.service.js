@@ -1,5 +1,6 @@
 'use strict'
 
+const moment = require('moment')
 let db = require('./../../db')
 let service = db.createService('issues', require('./issue.schema'))
 
@@ -9,12 +10,12 @@ let mapIssueFromGithub = (issue, githubIssue) => {
   issue.github = {
     title: githubIssue.title,
     number: githubIssue.number,
-    url: githubIssue.url,
+    url: githubIssue.html_url,
     state: githubIssue.state,
     labels: githubIssue.labels,
-    createdOn: githubIssue.created_at,
-    updatedOn: githubIssue.updated_at,
-    closedOn: githubIssue.closed_at,
+    createdOn: moment(githubIssue.created_at).toDate(),
+    updatedOn: moment(githubIssue.updated_at).toDate(),
+    closedOn: moment(githubIssue.closed_at).toDate(),
     description: githubIssue.body,
     commentsCount: githubIssue.comments
   }

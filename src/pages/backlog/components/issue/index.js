@@ -2,17 +2,23 @@ import 'core-js/fn/object/assign'
 import React from 'react'
 
 class IssueComponent extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = props.issue
+  }
+
+  voteUp (issue) {
+    issue.order += 1
+    this.setState(issue)
+    window.alert(`vote for: "${issue.title}"`)
+  }
+
   render () {
     return (
-    <tr>
-          <td className='issue-description'>
-              <a href='{this.props.issue.github.url}'>{this.props.issue.github.title}</a>
-          </td>
-          <td>
-              ({this.props.issue.pointsCount}) &nbsp
-              <a>+1</a> | <a>+3</a> | <a>+10</a> | <a>+64 (all my points)</a>
-          </td>
-      </tr>
+    <div>
+      <a target='blank' href={this.state.github.url}>{this.state.github.title}</a> |
+      ({this.state.pointsCount}) | <button onClick={this.voteUp.bind(this, this.state)} className='btn'>+1</button>
+    </div>
     )
   }
 }

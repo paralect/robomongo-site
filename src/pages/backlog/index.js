@@ -1,5 +1,6 @@
 import 'core-js/fn/object/assign'
 import React from 'react'
+import FlipMove from 'react-flip-move'
 require('./style.less')
 import IssueComponent from './components/issue'
 
@@ -7,45 +8,25 @@ class BacklogComponent extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      issues: [{
-        _id: 1,
-        pointsCount: 111,
-        inDevelopment: true,
-        github: {
-          title: 'Better GridFS support',
-          number: 255,
-          url: '',
-          description: '',
-          commentsCount: 50
-        }
-      }, {
-        _id: 2,
-        pointsCount: 87,
-        inDevelopment: false,
-        github: {
-          title: 'MacOSX: Robomongo crashes after waking up from sleep',
-          number: 717,
-          url: '',
-          description: '',
-          commentsCount: 15
-        }
-      }, {
-        _id: 3,
-        pointsCount: 30,
-        inDevelopment: false,
-        github: {
-          title: 'MacOSX: Robomongo crashes after waking up from sleep',
-          number: 717,
-          url: '',
-          description: '',
-          comments: 49
-        }
-      }]
+      issues: []
     }
   }
 
-  tick () {
-    console.log('tick')
+  componentDidMount () {
+    this.loadIssues()
+  }
+
+  loadIssues () {
+    window.fetch('/api/v1/issues')
+      .then(response => response.json())
+      .then(data => {
+        let issues = data.results
+        for (let i = 0, length = issues.length; i < length; i++) {
+          issues[i].order = i
+        }
+        this.setState({ issues: issues })
+      })
+      .catch(err => console.error(err.toString()))
   }
 
   render () {
@@ -63,21 +44,15 @@ class BacklogComponent extends React.Component {
                     You have (64) points which you can spend to vote for feature you want to see in next release.
                   </div>
                   <div className='backlog-block__issues_container'>
-                    <table className='backlog-block__issues'>
-                      <thead>
-                        <tr>
-                            <th>Feature or Issue</th>
-                            <th>Points</th>
-                        </tr>
-                      </thead>
-                      <tbody>
+                    <div className='backlog-block__issues'>
+                      <FlipMove easing='cubic-bezier(0, 0.7, 0.8, 0.1)'>
                          {this.state.issues.map(function (row, i) {
                            return (
                              <IssueComponent key={row._id} issue={row}/>
                           )
                          })}
-                     </tbody>
-                   </table>
+                       </FlipMove>
+                   </div>
                  </div>
                 </div>
               </div>

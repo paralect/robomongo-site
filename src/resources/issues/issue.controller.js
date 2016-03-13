@@ -15,8 +15,9 @@ module.exports.syncWithGithub = function *() {
 
 module.exports.list = function *() {
   let query = {'github.state': 'open'}
+  let sort = {'github.createdOn': -1}
 
-  let issuesResult = yield issueService.find(query)
+  let issuesResult = yield issueService.find(query, {sort: sort})
 
   // fetch all issues from github on a first request
   if (issuesResult.results.length === 0) {

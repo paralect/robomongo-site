@@ -5,6 +5,8 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import BacklogComponent from 'backlog'
 let favicon = require('./favicon.ico')
 document.querySelector('[rel="shortcut icon"]').href = favicon
+// expose global fetch polyfil
+require('whatwg-fetch')
 
 require('./components/bootstap-customized')
 
