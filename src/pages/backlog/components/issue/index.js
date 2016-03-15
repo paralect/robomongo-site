@@ -15,10 +15,10 @@ class IssueComponent extends React.Component {
 
   render () {
     return (
-    <div>
-      <a target='blank' href={this.state.github.url}>{this.state.github.title}</a> |
-      ({this.state.pointsCount}) | <button onClick={this.voteUp.bind(this, this.state)} className='btn'>+1</button>
-    </div>
+      <div>
+        <a target='blank' href={this.state.github.url}>{this.state.github.title}</a> |
+        ({this.state.pointsCount}) | <button onClick={this.voteUp.bind(this, this.state)} className='btn'>+1</button>
+      </div>
     )
   }
 }

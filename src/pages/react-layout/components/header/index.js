@@ -5,7 +5,7 @@ require('./style.less')
 class HeaderComponent extends React.Component {
   render () {
     return (
-    <div className='robo-header'>
+      <div className='robo-header'>
         <nav className='navbar navbar-default navbar-static-top'>
           <div className='container'>
             <div className='navbar-header'>

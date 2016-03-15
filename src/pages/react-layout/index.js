@@ -15,7 +15,7 @@ import Header from './components/header'
 class AppComponent extends React.Component {
   render () {
     return (
-    <div>
+      <div>
         <Header />
         {this.props.children}
       </div>
