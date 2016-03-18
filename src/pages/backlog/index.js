@@ -1,14 +1,16 @@
 import 'core-js/fn/object/assign'
 import React from 'react'
+import _ from 'lodash'
 import FlipMove from 'react-flip-move'
 require('./style.less')
-import IssueComponent from './components/issue'
+import { IssueComponent } from './components/issue'
 
 class BacklogComponent extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      issues: []
+      issues: [],
+      maxVote: 10
     }
   }
 
@@ -22,14 +24,21 @@ class BacklogComponent extends React.Component {
       .then((data) => {
         let issues = data.results
         for (let i = 0, length = issues.length; i < length; i++) {
-          issues[i].order = i
+          issues[i].votes = Math.round(Math.random() * this.state.maxVote + 1)
         }
         this.setState({ issues: issues })
       })
       .catch((err) => console.error(err.toString()))
   }
 
+  _onIssueVote (issue) {
+    if (issue.votes > this.state.maxVote) {
+      this.setState({maxVote: issue.votes})
+    }
+  }
+
   render () {
+    console.log(_(this.state.issues).sortBy((issue) => { issue.votes }).value())
     return (
       <div className='vertically-centered'>
         <div className='vertically-centered__box'>
@@ -45,13 +54,26 @@ class BacklogComponent extends React.Component {
                   </div>
                   <div className='backlog-block__issues_container'>
                     <div className='backlog-block__issues'>
-                      <FlipMove easing='cubic-bezier(0, 0.7, 0.8, 0.1)'>
-                        {this.state.issues.map(function (row, i) {
-                          return (
-                            <IssueComponent key={row._id} issue={row}/>
-                          )
-                        })}
-                      </FlipMove>
+                      <ul>
+                        <FlipMove staggerDurationBy='30' duration={500}>
+                          {_(this.state.issues)
+                            .sortBy((issue) => { issue.votes })
+                            .map((issue, i) => {
+                              return (
+                                <li key={issue._id}
+                                  style={{zIndex: i}}>
+                                  <IssueComponent
+                                    issue={issue}
+                                    maxVote={this.state.maxVote}
+                                    onVote={this._onIssueVote.bind(this)}
+                                  />
+                                </li>
+                              )
+                            })
+                            .value()
+                          }
+                        </FlipMove>
+                      </ul>
                     </div>
                   </div>
                 </div>
