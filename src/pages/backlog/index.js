@@ -1,6 +1,5 @@
 import 'core-js/fn/object/assign'
 import React from 'react'
-import _ from 'lodash'
 import FlipMove from 'react-flip-move'
 require('./style.less')
 import { IssueComponent } from './components/issue'
@@ -18,6 +17,12 @@ class BacklogComponent extends React.Component {
     this.loadIssues()
   }
 
+  _sortIssues (issues) {
+    return issues
+      .slice()
+      .sort((i1, i2) => { return i2.votes - i1.votes })
+  }
+
   loadIssues () {
     window.fetch('/api/v1/issues')
       .then((response) => response.json())
@@ -26,19 +31,38 @@ class BacklogComponent extends React.Component {
         for (let i = 0, length = issues.length; i < length; i++) {
           issues[i].votes = Math.round(Math.random() * this.state.maxVote + 1)
         }
-        this.setState({ issues: issues })
+        this.setState({ issues: this._sortIssues(issues) })
       })
       .catch((err) => console.error(err.toString()))
   }
 
   _onIssueVote (issue) {
-    if (issue.votes > this.state.maxVote) {
-      this.setState({maxVote: issue.votes})
+    let state = {
+      issues: this._sortIssues(this.state.issues)
     }
+    if (issue.votes > this.state.maxVote) {
+      state.maxVote = issue.votes
+    }
+    this.setState(state)
+  }
+
+  renderIssues (issues) {
+    return issues
+      .map((issue, i) => {
+        return (
+          <li key={issue._id}
+            style={{zIndex: i}}>
+            <IssueComponent
+              issue={issue}
+              maxVote={this.state.maxVote}
+              onVote={this._onIssueVote.bind(this)}
+            />
+          </li>
+        )
+      })
   }
 
   render () {
-    console.log(_(this.state.issues).sortBy((issue) => { issue.votes }).value())
     return (
       <div className='vertically-centered'>
         <div className='vertically-centered__box'>
@@ -56,22 +80,7 @@ class BacklogComponent extends React.Component {
                     <div className='backlog-block__issues'>
                       <ul>
                         <FlipMove staggerDurationBy='30' duration={500}>
-                          {_(this.state.issues)
-                            .sortBy((issue) => { issue.votes })
-                            .map((issue, i) => {
-                              return (
-                                <li key={issue._id}
-                                  style={{zIndex: i}}>
-                                  <IssueComponent
-                                    issue={issue}
-                                    maxVote={this.state.maxVote}
-                                    onVote={this._onIssueVote.bind(this)}
-                                  />
-                                </li>
-                              )
-                            })
-                            .value()
-                          }
+                          {this.renderIssues(this.state.issues)}
                         </FlipMove>
                       </ul>
                     </div>

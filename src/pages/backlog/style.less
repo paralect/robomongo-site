@@ -121,6 +121,7 @@
 
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
 
     &:hover {
       background-color: #efefef;
@@ -132,7 +133,9 @@
     align-items: center;
     background-color: #e6ebe0;
     padding-left: 15px;
-    white-space: nowrap;
+  }
+
+  &__issues &__issue_progress--title {
   }
 
   &__issues &__issue_votes {
