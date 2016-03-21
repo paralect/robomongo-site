@@ -20,7 +20,15 @@ class BacklogComponent extends React.Component {
   _sortIssues (issues) {
     return issues
       .slice()
-      .sort((i1, i2) => { return i2.votes - i1.votes })
+      .sort((i1, i2) => {
+        let res;
+        if (i2.votes !== i1.votes) {
+          res = i2.votes - i1.votes
+        } else {
+          res = new Date(i1.github.createdOn) - new Date(i2.github.createdOn)
+        }
+        return res
+      })
   }
 
   loadIssues () {
