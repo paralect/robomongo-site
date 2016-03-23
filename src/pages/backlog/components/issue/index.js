@@ -57,19 +57,19 @@ export class IssueComponent extends Component {
         </div>
         <div className='backlog-block__issue_vote_action col-xs-3'>
           <button
-            style={{visibility: this.props.pointsLeft() < 1 && 'hidden'}}
+            style={{display: this.props.pointsLeft() < 1 && 'none'}}
             onClick={this.voteUp.bind(this, 1)}
             type='button' className='btn btn-sm'>+1</button>
           <button
-            style={{visibility: this.props.pointsLeft() < 5 && 'hidden'}}
+            style={{display: this.props.pointsLeft() < 5 && 'none'}}
             onClick={this.voteUp.bind(this, 5)}
             type='button' className='btn btn-sm'>+5</button>
           <button
-            style={{visibility: this.props.pointsLeft() < 10 && 'hidden'}}
+            style={{display: this.props.pointsLeft() < 10 && 'none'}}
             onClick={this.voteUp.bind(this, 10)}
             type='button' className='btn btn-sm'>+10</button>
           <button
-            style={{visibility: this.props.pointsLeft() < 1 && 'hidden'}}
+            style={{display: this.props.pointsLeft() < 1 && 'none'}}
             onClick={this.voteUp.bind(this, this.props.pointsLeft())}
             type='button' className='btn btn-sm'>All (+{this.props.pointsLeft()})</button>
         </div>

@@ -130,6 +130,7 @@
   &__issues &__issue_progress_container {
     display: flex;
     align-items: stretch;
+    justify-content: flex-end;
     padding: 0;
     height: 2px;
     background: linear-gradient(to right, #36c9c6, #edeab5, #ed995a)
@@ -138,12 +139,15 @@
   &__issues &__issue_progress {
     display: flex;
     align-items: center;
+    transition: width 2s;
   }
 
   &__issues &__issue_progress--rest {
+    display: flex;
     background-color: #fafafa;
     color: #333;
     z-index: 1;
+    transition: width 2s;
   }
 
   &__issues &__issue--title {
