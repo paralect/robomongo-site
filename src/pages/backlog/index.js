@@ -9,7 +9,8 @@ class BacklogComponent extends React.Component {
     super(props)
     this.state = {
       issues: [],
-      maxVote: 10
+      maxVote: 10,
+      totalPoints: Math.floor(Math.random() * 100)
     }
   }
 
@@ -21,7 +22,7 @@ class BacklogComponent extends React.Component {
     return issues
       .slice()
       .sort((i1, i2) => {
-        let res;
+        let res
         if (i2.votes !== i1.votes) {
           res = i2.votes - i1.votes
         } else {
@@ -44,14 +45,19 @@ class BacklogComponent extends React.Component {
       .catch((err) => console.error(err.toString()))
   }
 
-  _onIssueVote (issue) {
+  _onIssueVote (issue, number) {
     let state = {
-      issues: this._sortIssues(this.state.issues)
+      issues: this._sortIssues(this.state.issues),
+      totalPoints: this.state.totalPoints - number
     }
     if (issue.votes > this.state.maxVote) {
       state.maxVote = issue.votes
     }
     this.setState(state)
+  }
+
+  _pointsLeft (number) {
+    return this.state.totalPoints
   }
 
   renderIssues (issues) {
@@ -64,6 +70,7 @@ class BacklogComponent extends React.Component {
               issue={issue}
               maxVote={this.state.maxVote}
               onVote={this._onIssueVote.bind(this)}
+              pointsLeft={this._pointsLeft.bind(this)}
             />
           </li>
         )
@@ -77,12 +84,12 @@ class BacklogComponent extends React.Component {
           <div className='backlog-block'>
             <div className='container'>
               <div className='row'>
-                <div className='col-sm-6 col-sm-offset-3'>
+                <div className='col-sm-12'>
                   <div className='backlog-block__title'>
                     Development Backlog
                   </div>
                   <div>
-                    You have (64) points which you can spend to vote for feature you want to see in next release.
+                    You have ({this.state.totalPoints}) points which you can spend to vote for feature you want to see in next release.
                   </div>
                   <div className='backlog-block__issues_container'>
                     <div className='backlog-block__issues'>
