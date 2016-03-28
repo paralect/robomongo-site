@@ -10,7 +10,7 @@ class BacklogComponent extends React.Component {
     this.state = {
       issues: [],
       maxVote: 10,
-      totalPoints: Math.floor(Math.random() * 100)
+      totalPoints: window.config.points
     }
   }
 
@@ -23,8 +23,8 @@ class BacklogComponent extends React.Component {
       .slice()
       .sort((i1, i2) => {
         let res
-        if (i2.votes !== i1.votes) {
-          res = i2.votes - i1.votes
+        if (i2.pointsCount !== i1.pointsCount) {
+          res = i2.pointsCount - i1.pointsCount
         } else {
           res = new Date(i1.github.createdOn) - new Date(i2.github.createdOn)
         }
@@ -37,12 +37,25 @@ class BacklogComponent extends React.Component {
       .then((response) => response.json())
       .then((data) => {
         let issues = data.results
-        for (let i = 0, length = issues.length; i < length; i++) {
-          issues[i].votes = Math.round(Math.random() * this.state.maxVote + 1)
-        }
         this.setState({ issues: this._sortIssues(issues) })
       })
       .catch((err) => console.error(err.toString()))
+  }
+
+  vote (issueId, points) {
+    window.fetch('/api/v1/votes/', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'authorization': `Bearer: ${window.config.token}`
+      },
+      body: JSON.stringify({
+        issueId: issueId,
+        points: points
+      })
+    })
+    .catch((err) => console.error(err.toString()))
   }
 
   _onIssueVote (issue, number) {
@@ -50,9 +63,11 @@ class BacklogComponent extends React.Component {
       issues: this._sortIssues(this.state.issues),
       totalPoints: this.state.totalPoints - number
     }
-    if (issue.votes > this.state.maxVote) {
-      state.maxVote = issue.votes
+    if (issue.pointsCount > this.state.maxVote) {
+      state.maxVote = issue.pointsCount
     }
+
+    this.vote(issue._id, number)
     this.setState(state)
   }
 

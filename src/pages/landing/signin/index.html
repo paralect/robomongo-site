@@ -1,0 +1,49 @@
+{% extends '../layout/index.html' %}
+
+{% block title %}Robomongo &mdash; Sign In{% endblock %}
+
+{% block head %}
+  {% parent %}
+  <link rel="stylesheet" href="/static/signin.css" />
+{% endblock %}
+
+{% block scripts %}
+  {% parent %}
+  <script src="/static/signin.js" ></script>
+{% endblock %}
+
+{% block content %}
+  {% include "./../layout/components/header/index.html" with data %}
+
+  <div class="vertically-centered">
+    <div class="vertically-centered__box">
+
+      <div class="signin-block">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+              <h1 class="signin-block__title">Welcome back!</h1>
+
+
+              <form id="signin-form" method="post" action="signin">
+                <div class="signin-block__form">
+                  <input name="email" class="form-control" type="email" placeholder="Your email address"/>
+                  <input name="password" class="form-control" type="password" placeholder="Your password"/>
+                </div>
+                <div class="signin-block__buttons">
+                  <button type="submit" class="btn btn-md signin-block__green-button">&nbsp;&nbsp;Signin&nbsp;&rarr;</button>
+                  <a href="/signup" class="signin-block__link" style="margin-left: 20px">Need an account?</a>
+                </div>
+              </form>
+
+              <div class="signin-block__forgot">
+              <a class="signin-block__link" href="/forgot-password">Forgot password?</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}

@@ -43,7 +43,7 @@ module.exports = (app) => {
 
   app.use(views(path.join(__dirname, './../pages'), {
     default: 'html',
-    map: {'html': 'handlebars'}
+    map: {'html': 'swig'}
   }))
 
   app.use(function *(next) {

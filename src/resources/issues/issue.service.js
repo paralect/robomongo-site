@@ -39,4 +39,27 @@ service.syncWithGithub = function *(issues) {
   return {}
 }
 
+service.updateGithubIssue = function *(issue) {
+  let exists = yield service.exists({_id: issue.id.toString()})
+  if (exists) {
+    yield service.update({_id: issue.id.toString()}, (doc) => {
+      mapIssueFromGithub(doc, issue)
+    })
+  } else {
+    yield service.create(mapIssueFromGithub({}, issue))
+  }
+}
+
+service.updatePoints = function (issueId, userId, points) {
+  let voters = {}
+  voters[`voters.${userId}`] = true
+  let update = {
+    $inc: {
+      pointsCount: points
+    },
+    $set: voters
+  }
+  return service.atomicUpdate({_id: issueId}, update)
+}
+
 module.exports = service

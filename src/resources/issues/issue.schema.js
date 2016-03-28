@@ -41,7 +41,9 @@ let issue = {
   'properties': {
     '_id': { 'type': 'string' },
     'pointsCount': { 'type': 'number' },
-    'github': { '$ref': '/IssueGithub' }
+    'github': { '$ref': '/IssueGithub' },
+    // users, which vote for the issue. ex.: {'userId': true}
+    'userIds': {'type': 'object'}
   },
   'required': ['_id', 'pointsCount', 'github']
 }

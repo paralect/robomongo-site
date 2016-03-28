@@ -82,7 +82,6 @@ class BaseService extends BaseQueryService {
   }
 
   remove (query) {
-    this._checkCompanyId(query)
     return this._collection.removeAsync(query)
   }
 
@@ -97,7 +96,6 @@ class BaseService extends BaseQueryService {
    **/
   atomicUpdate (query, update, options) {
     options = options || {}
-    this._checkCompanyId(query)
     return this._collection.updateAsync(query, update, options)
   }
 }

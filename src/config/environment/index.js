@@ -16,10 +16,15 @@ let base = {
   github: {
     clientId: 'e61e7dd7c0d9006d93c2',
     clientSecret: '7fb3ad13955315138535683a483f817c70b5df90',
-    repoName: 'robomongo',
-    repoOwner: 'paralect'
+    repoName: 'rtest',
+    repoOwner: 'anorsich',
+    webhookSecret: 'test'
   },
-  port: process.env.PORT || 4111
+  port: process.env.PORT || 4001,
+  jwtSecret: process.env.ROBO_JWT_SECRET || 'robomongo_f@rever',
+  authCookieName: 'robo_auth',
+  // 1 year
+  authCookieDuration: 365 * 24 * 60 * 60 * 1000
 }
 
 base = _.merge(base, require(`./${env}.js`) || {})

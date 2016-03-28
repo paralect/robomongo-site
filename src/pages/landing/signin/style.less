@@ -1,0 +1,76 @@
+@import "~common/bootstap-customized/index.less";
+@import "~common/less-vars/defaults.less";
+
+.signin-block {
+  position: relative;
+  top: -50px;
+  background-color: #fafafa;
+  border-top: 1px solid #f8f8f8;
+  border-bottom: 1px solid #f8f8f8;
+  padding-top: 30px;
+  padding-bottom: 60px;
+
+  background-image: url(./robomongo.png);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: 180px;
+
+  &__title {
+    font-size: 44px;
+    font-weight: @font-weight-80;
+    color: @font-color-dark-90;
+  }
+
+  &__form {
+    margin-top: 25px;
+  }
+
+  &__buttons {
+    margin-top: 20px;
+
+  }
+
+  &__forgot {
+    margin-top: 30px;
+  }
+
+  & input {
+    width: 350px;
+    margin-bottom: 8px;
+  }
+
+  &__green-button {
+    @back: lighten(#40a240, 2%);
+    .button-variant(fade(white, 100%); fade(@back, 100%); fade(@back, 50%));
+  }
+
+  &__link {
+    color: @font-color-dark-70;
+    //  text-decoration: underline;
+    border-bottom: 1px dotted @font-color-dark-60;
+
+    &:hover,
+    &:focus {
+      color: @font-color-dark-60;
+      text-decoration: none;
+      border-bottom: 1px solid white;
+    }
+
+    &:focus {
+      .tab-focus();
+    }
+  }
+}
+
+
+.vertically-centered {
+  display: table;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+
+  &__box {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}

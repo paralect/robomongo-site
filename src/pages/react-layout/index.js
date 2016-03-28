@@ -8,7 +8,7 @@ document.querySelector('[rel="shortcut icon"]').href = favicon
 // expose global fetch polyfil
 require('whatwg-fetch')
 
-require('./components/bootstap-customized')
+require('common/bootstap-customized')
 
 import Header from './components/header'
 

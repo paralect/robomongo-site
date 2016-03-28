@@ -9,7 +9,10 @@ module.exports = {
   devtool: 'eval',
   port: port,
   context: __dirname,
-  entry: './src/pages/react-layout/index.js',
+  entry: {
+    main: './src/pages/react-layout/index.js',
+    signin: './src/pages/landing/signin/index.js'
+  },
   output: {
     path: path.resolve('./src/static'),
     filename: '[name].js',
@@ -32,6 +35,10 @@ module.exports = {
         query: {
           presets: ['es2015', 'react']
         }
+      },
+      {
+        test: /\.html$/,
+        loader: 'html'
       }
     ]
   },

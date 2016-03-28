@@ -1,0 +1,15 @@
+{
+  "dependencies": [
+    "src/libs/jquery",
+    "src/libs/modernizr",
+    "src/libs/d3",
+    "src/libs/bootstrap",
+    "src/layouts/base",
+    "src/modules/defaults",
+    "src/modules/popup",
+    "src/tags/robo-header",
+
+    "./style.less",
+    "require-run: ./client.js"
+  ]
+}

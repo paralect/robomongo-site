@@ -11,14 +11,14 @@ export class IssueComponent extends Component {
   }
 
   voteUp (number) {
-    this.state.issue.votes += number
+    this.state.issue.pointsCount += number
     this.state.issue.isDirty = true
     this.setState({issue: this.state.issue})
     this.props.onVote(this.state.issue, number)
   }
 
   render () {
-    let progressWidthPercent = (this.state.issue.votes / this.props.maxVote) * 100
+    let progressWidthPercent = (this.state.issue.pointsCount / this.props.maxVote) * 100
 
     return (
       <div
@@ -53,7 +53,7 @@ export class IssueComponent extends Component {
           <span className={classnames({
             'backlog-block__issue_votes--dirty': this.state.issue.isDirty
           })}>★</span>
-          {this.state.issue.votes}
+          {this.state.issue.pointsCount}
         </div>
         <div className='backlog-block__issue_vote_action col-xs-3'>
           <button

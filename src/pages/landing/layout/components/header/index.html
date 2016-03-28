@@ -1,0 +1,26 @@
+<div class='robo-header'>
+  <nav class='navbar navbar-default navbar-static-top'>
+    <div class='container'>
+      <div class='navbar-header'>
+        <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar' aria-expanded='true' aria-controls='navbar'>
+          <span class='sr-only'>Toggle navigation</span>
+          <span class='icon-bar'></span>
+          <span class='icon-bar'></span>
+          <span class='icon-bar'></span>
+        </button>
+        <a class='navbar-brand' href='/'>
+          <img src="{{ headerLogoImage }}" class='robo-header__logo'></img>
+          Robomongo
+        </a>
+      </div>
+      <div id='navbar' class='collapse navbar-collapse'>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/download">Download</a></li>
+          <li><a href="/buy">Buy</a></li>
+          <li><a href="http://blog.robomongo.org">Blog</a></li>
+          <li class="robo-header__account {% if data.active == 'account' %}active{% endif %}"><a id="robo-header__account-link" href="account">Account<img class="robo-header__account-image" src="{{headerAccountImage}}" /></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
