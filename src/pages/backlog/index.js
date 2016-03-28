@@ -72,6 +72,7 @@ class BacklogComponent extends React.Component {
   }
 
   _pointsLeft (number) {
+    return true;
     return this.state.totalPoints
   }
 

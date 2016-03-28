@@ -49,11 +49,19 @@ export class IssueComponent extends Component {
             </div>
           </div>
         </div>
-        <div className='backlog-block__issue_votes col-xs-1'>
-          <span className={classnames({
-            'backlog-block__issue_votes--dirty': this.state.issue.isDirty
-          })}>★</span>
-          {this.state.issue.pointsCount}
+        <div className='backlog-block__issue_stats col-xs-2'>
+          <div className='backlog-block__issue_comments'>
+            <span className='glyphicon glyphicon-comment' aria-hidden='true'></span>
+            <span className='backlog-block__issue_comments--number'>
+              {this.state.issue.github.commentsCount}
+            </span>
+          </div>
+          <div className='backlog-block__issue_votes'>
+            <span className={classnames({
+              'backlog-block__issue_votes--dirty': this.state.issue.isDirty
+            })}>★</span>
+            {this.state.issue.pointsCount}
+          </div>
         </div>
         <div className='backlog-block__issue_vote_action col-xs-3'>
           <button
