@@ -69,6 +69,7 @@
     "standard-reporter": "^1.0.5",
     "swig": "^1.4.2",
     "swig-loader": "^1.0.0",
+    "webpack-require": "0.0.16",
     "whatwg-fetch": "^0.11.0",
     "winston": "^2.2.0"
   },
